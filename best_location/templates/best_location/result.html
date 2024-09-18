@@ -1,0 +1,46 @@
+{% extends "best_location/layout.html" %}
+{% block body %}
+
+<style>
+        body {
+            background-color: #f8f9fa;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            margin-top: 50px;
+            max-width: 600px;
+        }
+        .card {
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .btn-custom {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+        }
+        .btn-custom:hover {
+            background-color: #012e5f;
+        }
+    </style>
+
+<div class="container">
+    <div class="card">
+        <h2 class="text-center">Predicted Profit Percentage</h2>
+        <p class="text-center display-4">{{ predicted_profit }}</p>
+        <div class="text-center">
+            <a href="{% url 'try_AI' %}" class="btn-custom">Predict Again</a>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+
+{% endblock %}

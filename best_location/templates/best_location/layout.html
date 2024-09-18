@@ -1,0 +1,72 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>{% block title %}best_location{% endblock %}</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <link href="{% static 'best_location/styles.css' %}" rel="stylesheet">
+    </head>
+    <body>
+        <h1>Best Location AI</h1>
+        <div>
+            {% if user.is_authenticated %}
+                Signed in as <strong>{{ user.username }}</strong>.
+            {% else %}
+                Not signed in.
+            {% endif %}
+        </div>
+        
+        <ul class="nav">
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'index' %}"><strong>Home</strong></a>
+            </li>
+            {% if user.is_authenticated %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'try_AI' %}"><strong>Try AI</strong></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'logout' %}"><strong>Log Out</strong></a>
+                </li>
+            {% else %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'login' %}"><strong>Log In</strong></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'register' %}"><strong>Register</strong></a>
+                </li>
+            {% endif %}
+        </ul>
+        <hr>
+        <style>
+            body {
+                background-color: #f4f4f4;
+                font-family: Arial, sans-serif;
+                padding: 20px;
+                text-align: center;
+            }
+
+            h1 {
+                color: #333;
+            }
+
+            .nav {
+                background-color: #7a8897;
+                padding: 10px;
+                display: flex;
+                justify-content: center;
+            }
+
+            .nav-item {
+                margin: 0 10px;
+                text-align: center;
+            }
+
+            .nav-link {
+                color: #fff;
+            }
+        </style>
+        {% block body %}
+        {% endblock %}
+    </body>
+</html>

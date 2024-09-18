@@ -1,0 +1,43 @@
+{% extends "best_location/layout.html" %}
+
+{% block body %}
+    <h2><strong>Welcome</strong></h2>
+    <br>
+    <h5>You can <strong>DEVELOP</strong> your <strong>BUSINES</strong> by use this AI technology.</h5>
+    <p>You can safely choose which locations are suitable for your business and your market</p>
+    <p>just give us some information and we can give you the highest profit that you can get by buying a place</p>
+    <br>
+    <br>
+    {% if user.is_authenticated %}
+        <a href="{% url 'try_AI' %}"><button class="alert alert-success">Try AI</button></a>
+            {% else %}
+                Please at first sign in
+            {% endif %}
+    <style>
+        
+body {
+    font-family: Arial, sans-serif; 
+    background-color: #f0f0f0; 
+    text-align: center; 
+    margin: 0; 
+    padding: 0; 
+}
+
+h2 {
+    color: #007bff; 
+    font-size: 24px; 
+    font-weight: bold; 
+}
+
+p {
+    color: #333; 
+    font-size: 16px; 
+}
+
+a {
+    text-decoration: none; 
+}
+
+
+    </style>
+{% endblock %}
