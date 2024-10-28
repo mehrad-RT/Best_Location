@@ -1,0 +1,101 @@
+{% extends "best_location/layout.html" %}
+
+{% block body %}
+    <div class="container">
+        <h2>Enter New Information</h2>
+
+        <form action="{% url 'try_AI' %}" method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="district_number">District Number</label>
+                <input name="district_number" type="number" class="form-control" id="district_number" placeholder="Enter district number" min="1" max="22" step="0.1" required>
+            </div>        
+            <div class="form-group">
+                <label for="size">Size</label>
+                <input name="size" type="number" class="form-control" id="size" placeholder="Enter size" min="1" step="0.1" required>
+            </div>
+            <div class="form-group">
+                <label for="product_grade">Product Grade</label>
+                <input name="product_grade" type="number" class="form-control" id="product_grade" placeholder="Enter product grade" min="1" max="3" step="0.1" required>
+            </div>
+            <div class="form-group">
+                <label for="parking_place">Parking Place</label>
+                <input type="checkbox" class="form-control" id="parking_place" name="parking_place" value="1">
+            </div>
+            
+            <button type="submit" class="btn btn-success">Profit Calculation</button>
+        </form>
+    </div>
+  
+    <style>
+        body {
+            background-color: #f4f7fa;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 400px;
+            padding: 30px;
+            text-align: left;
+            margin: 20px;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+            font-size: 24px;
+            color: #333;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #555;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            box-sizing: border-box;
+            transition: all 0.3s ease;
+        }
+
+        .form-control:focus {
+            border-color: #4a4dbc;
+            outline: none;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 10px;
+            background-color: #4a4dbc;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+            text-align: center;
+        }
+
+        .btn:hover {
+            background-color: #3d3f8f;
+        }
+    </style>
+
+{% endblock %}

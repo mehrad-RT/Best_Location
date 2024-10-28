@@ -1,0 +1,165 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>{% block title %}best_location{% endblock %}</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(135deg, #ece8ff, #f3faff);
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        h1 {
+            font-size: 40px;
+            font-weight: 600;
+            margin: 20px 0;
+            text-align: center;
+            color: #5b56e2;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        .navbar {
+            background-color: #ffffff;
+            border-bottom: 1px solid #eaeaea;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar-brand {
+            color: #5b56e2;
+            font-size: 30px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .nav {
+            display: flex;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .nav-item {
+            margin: 0 10px;
+        }
+
+        .nav-link {
+            color: #5b56e2;
+            font-weight: 500;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            transition: background-color 0.3s, color 0.3s, transform 0.3s;
+            background-color: #fff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+        }
+
+        .nav-link:hover {
+            background-color: #5b56e2;
+            color: #ffffff;
+            transform: translateY(-3px);
+        }
+
+        .content {
+            padding: 40px 20px;
+            text-align: center;
+            flex: 1;
+        }
+
+        button {
+            background-color: #5b56e2;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        button:hover {
+            background-color: #4a49ba;
+            transform: translateY(-2px);
+        }
+
+        footer {
+            background-color: #fff;
+            padding: 10px 0;
+            text-align: center;
+            border-top: 1px solid #eaeaea;
+            font-size: 14px;
+            margin-top: 20px;
+        }
+
+        footer p {
+            margin: 0;
+            color: #888;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-brand">Best Location AI</div>
+        <ul class="nav">
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'index' %}">Home</a>
+            </li>
+            {% if user.is_authenticated %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'try_AI' %}">Try AI</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'logout' %}">Log Out</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'archive' %}">Archive</a>
+                </li>
+            {% else %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'login' %}">Log In</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'register' %}">Register</a>
+                </li>
+            {% endif %}
+        </ul>
+    </nav>
+
+    <div class="content">
+        {% if user.is_authenticated %}
+            <p>Welcome <strong>{{ user.username }}</strong>.</p>
+        {% else %}
+            <p>Not signed in.</p>
+        {% endif %}
+        {% block body %}
+        {% endblock %}
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Best Location AI. All rights reserved.</p>
+    </footer>
+</body>
+</html>
